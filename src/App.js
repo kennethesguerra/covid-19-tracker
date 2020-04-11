@@ -18,7 +18,7 @@ class App extends Component {
               <a href="http://github.com/kennethesguerra"> @mathdroid</a>'s Covid-19 API</p>
             </div>
             <Switch>
-              <Route exact path='/' component={Home}></Route>
+              <Route exact path='/covid-19-tracker/' component={Home}></Route>
             </Switch>
           </div>
         </div>
