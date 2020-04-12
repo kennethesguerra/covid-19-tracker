@@ -1,26 +1,40 @@
 import React from 'react';
+import { formatDate, formatNumber } from '../utils/'; 
+import SummaryChart from './charts/SummaryChart';
 
-const CaseStatus = ({details, formatNumber}) => {
+const CaseStatus = ({details}) => {
+  let lastUpdate = details.lastUpdate;
+  let confirmed = details.confirmed.value;
+  let recovered = details.recovered.value;
+  let deaths = details.deaths.value;
+
+  let active = confirmed - (recovered + deaths)
+
+  let active_percentage = active / confirmed * 100;
+  let recovered_percentage = (recovered / confirmed) * 100;
+  let death_percentage = (deaths / confirmed) * 100;
+
   return (
     <div>
-      <p className="center grey-text">As of <b>{details.lastUpdate}</b></p>
-      <div className="col s12 m4">
-        <div className="card-panel yellow darken-3">
-          <p><b>CONFIRMED CASES</b></p>
-          <h4 className="white-text">{formatNumber(details.confirmed.value)}</h4>
-        </div>
+      <p className="center grey-text">Last updated at <b>{formatDate(lastUpdate)}</b></p>
+      <div className="col s12 m5">
+        <ul class="collection white-text darken-2">
+          <li class="collection-item yellow darken-2">
+            <h6><b>CONFIRMED CASES: </b>{formatNumber(confirmed)}</h6>
+          </li>
+          <li class="collection-item green darken-3">
+            <h6><b>RECOVERED: </b>{formatNumber(recovered)} ({recovered_percentage.toFixed(2)}%)</h6>
+          </li>
+          <li class="collection-item red darken-3">
+            <h6><b>DEATHS: </b>{formatNumber(deaths)} ({death_percentage.toFixed(2)}%)</h6>
+          </li>
+          <li class="collection-item grey darken-1">
+            <h6><b>ACTIVE CASES: </b>{formatNumber(active)} ({active_percentage.toFixed(2)}%)</h6>
+          </li>
+        </ul>
       </div>
-      <div className="col s12 m4">
-        <div className="card-panel green darken-3">
-          <p><b>RECOVERED</b></p>
-          <h4 className="white-text">{formatNumber(details.recovered.value)}</h4>
-        </div>
-      </div>
-      <div className="col s12 m4">
-        <div className="card-panel red darken-3">
-          <p><b>DEATHS</b></p>
-          <h4 className="white-text">{formatNumber(details.deaths.value)}</h4>
-        </div>
+      <div className="col s12 m7">
+        <SummaryChart active={active} recovered={recovered} deaths={deaths}  />
       </div>
     </div>
   )
