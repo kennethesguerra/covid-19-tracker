@@ -11,7 +11,7 @@ class App extends Component {
         <div className="App">
           <div className="row blue darken-4 header">
             <div className="col s12 m9">
-            <Link to='/covid-19-tracker'><h5>COVID-19 Pandemic Status</h5></Link>
+            <Link to='/covid-19-stat/'><h5>COVID-19 Pandemic Status</h5></Link>
             </div>
             <div className="col s12 m3">
               <a href="https://github.com/kennethesguerra/covid-19-stat"><i className="fab fa-github fa-3x right"></i></a>
