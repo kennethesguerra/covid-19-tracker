@@ -14,14 +14,14 @@ class App extends Component {
             <Link to='/covid-19-tracker'><h5>COVID-19 Pandemic Status</h5></Link>
             </div>
             <div className="col s12 m3">
-              <a href="https://github.com/kennethesguerra/covid-19-tracker"><i className="fab fa-github fa-3x right"></i></a>
+              <a href="https://github.com/kennethesguerra/covid-19-stat"><i className="fab fa-github fa-3x right"></i></a>
             </div>
           </div>
           <div className="home-page container">
             <Switch>
-              <Route exact path='/covid-19-tracker/' component={Home}></Route>
-              <Route exact path='/covid-19-tracker/worldwide' component={Worldwide}></Route>
-              <Route exact path='/covid-19-tracker/daily' component={GlobalDailyStatus}></Route>
+              <Route exact path='/covid-19-stat/' component={Home}></Route>
+              <Route exact path='/covid-19-stat/worldwide' component={Worldwide}></Route>
+              <Route exact path='/covid-19-stat/daily' component={GlobalDailyStatus}></Route>
             </Switch>
           </div>
           <p className="center grey-text">Visualization by<a href='http://github.com/kennethesguerra'> @kennethesguerra</a><br />

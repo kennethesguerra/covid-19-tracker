@@ -56,12 +56,12 @@ class Home extends Component {
         <h4 className="center grey-text text-darken-2">Global</h4>
         <CaseStatus details={world} />
         <div class="row right">
-          <Link to='/covid-19-tracker/daily' >
+          <Link to='/covid-19-stat/daily' >
             <button className="left btn waves-effect waves-light" type="button" name="action">
               See Global Daily Report
             </button>
           </Link> <br /><br />
-          <Link to='/covid-19-tracker/worldwide' >
+          <Link to='/covid-19-stat/worldwide' >
             <button className="btn waves-effect waves-light" type="button" name="action">
               See cases by countries
             </button>
