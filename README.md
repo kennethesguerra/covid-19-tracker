@@ -1,5 +1,8 @@
-<<<<<<< HEAD
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### COVID-19 Pandemic Status - [kennethesguerra.github.io/covid-19-stat](https://kennethesguerra.github.io/covid-19-stat)
+
+Created using ReactJS with React-ChartJS 2 wrapper. 
+
+Data Source from: https://covid19.mathdro.id
 
 ## Available Scripts
 
