@@ -17,11 +17,18 @@ code {
   height: 50px;
 }
 
-
 .header {
   margin: 0 !important;
   background-color: #1565c0 ;
   color: #eee;
   padding: 10px;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.loader-margin {
+  margin-top: 20px;
+}
+
+.small-text {
+  font-size: 10px;
 }

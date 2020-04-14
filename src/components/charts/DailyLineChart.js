@@ -1,5 +1,5 @@
 
-import React, { Component } from 'react';
+import React from 'react';
 import { Line } from 'react-chartjs-2';
 
 const DailyLineChart = ({dailyCases}) => {
@@ -15,7 +15,7 @@ const DailyLineChart = ({dailyCases}) => {
     deaths.push(dailyCase.totalDeaths);
     recovered.push(dailyCase.totalRecovered);
   });
-  console.log(confirmed);
+
   const data = {
     labels: labels,
     datasets: [
@@ -43,6 +43,11 @@ const DailyLineChart = ({dailyCases}) => {
   return (
     <div>
       <Line data={data} />
+      <h6><b>Are we flattening the curve?</b></h6>
+      <p>
+        Our guide to <i>"flatting the curve"</i> is to let <span className="green darken-3 white-text">green</span> or the <span className="red darken-3 white-text">red</span> (deeply wishing this stays in its current axis forever) 
+        going to the right would get closer and closer until it reaches the <span className="yellow darken-3 white-text">yellow</span> line.
+      </p>
     </div>
   )
 }

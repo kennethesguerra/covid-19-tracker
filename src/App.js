@@ -3,6 +3,7 @@ import { HashRouter, Switch, Route, Link } from 'react-router-dom';
 import Home from './components/Home';
 import Worldwide from './components/Worldwide';
 import GlobalDailyStatus from './components/GlobalDailyStatus';
+import CountryDailyStatus from './components/CountryDailyStatus';
 
 class App extends Component {
   render() {
@@ -22,6 +23,7 @@ class App extends Component {
               <Route exact path='/' component={Home}></Route>
               <Route exact path='/worldwide' component={Worldwide}></Route>
               <Route exact path='/daily' component={GlobalDailyStatus}></Route>
+              <Route exact path='/daily/country' component={CountryDailyStatus}></Route>
             </Switch>
           </div>
           <p className="center grey-text">Visualization by<a href='http://github.com/kennethesguerra'> @kennethesguerra</a><br />

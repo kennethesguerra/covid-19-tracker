@@ -13,6 +13,7 @@ import axios from 'axios';
 import CaseStatus from './CaseStatus';
 import { Link } from 'react-router-dom';
 import Preloader from './Preloader';
+import { getLocation } from '../utils/';
 
 class Home extends Component {
   state = {
@@ -24,14 +25,13 @@ class Home extends Component {
 
   async componentDidMount() {
 
-    await axios.get('https://ipapi.co/json')
-      .then(res => {
-        this.setState({
-          userCountryCode: res.data.country, 
-          userCountryName: res.data.country_name
-        })
-      });
-
+    const location = await getLocation();
+    
+    this.setState({
+      userCountryCode: location.countryCode, 
+      userCountryName: location.countryName
+    });
+    
     axios.get('https://covid19.mathdro.id/api')
       .then(res => {
         this.setState({
@@ -50,17 +50,24 @@ class Home extends Component {
   render() {
     const { world } = this.state;
     const { userCountry } = this.state;
+    const { userCountryName } = this.state;
     
     const worldSummary = Object.entries(world).length ? (
-      <div className="row">
-        <h4 className="center grey-text text-darken-2">Global</h4>
-        <CaseStatus details={world} />
-        <div class="row right">
-          <Link to='/daily' >
-            <button className="left btn waves-effect waves-light" type="button" name="action">
-              See Global Daily Report
-            </button>
-          </Link> <br /><br />
+      <div>
+        <div className="row">
+          <h4 className="center grey-text text-darken-2">Global</h4>
+          <CaseStatus details={world} />
+        </div>
+        <div className="row center">
+          <div className="col s12 m12">
+            <Link to='/daily' >
+              <button className="btn waves-effect waves-light" type="button" name="action">
+                See Global Daily Report Chart
+              </button>
+            </Link>
+          </div>
+        </div>
+        <div className="row center">
           <Link to='/worldwide' >
             <button className="btn waves-effect waves-light" type="button" name="action">
               See cases by countries
@@ -74,15 +81,25 @@ class Home extends Component {
 
     const userCountrySummary = Object.entries(userCountry).length ? (
       <div className="row">
-        <h5 className="center grey-text text-darken-2">{ this.state.userCountryName }</h5>
+        <h5 className="center grey-text text-darken-2">{ userCountryName }</h5>
         <p className="grey-text text-darken-2 center">(Viewer's country)</p>
         <CaseStatus details={userCountry} />
+        <div className="row center">
+          <div className="col s12 m12">
+            <Link to='/daily/country' >
+              <button className="btn waves-effect waves-light" type="button" name="action">
+                See {userCountryName} Daily Report Chart
+              </button>
+            </Link>
+          </div>
+        </div>
       </div>
     ) : (
-      <Preloader />
+      <div></div>
     )
-    
+      
     return (
+
       <div className="summary">
         {worldSummary}
         <hr />

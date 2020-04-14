@@ -7,7 +7,7 @@
  */
 import React, { Component } from 'react'
 import axios from 'axios';
-import { formatNumber } from '../utils/';
+import { formatNumber, getStatusInCountry } from '../utils/';
 import Preloader from './Preloader';
 
 class Worldwide extends Component {
@@ -16,46 +16,42 @@ class Worldwide extends Component {
   };
 
   async componentDidMount() {
+    let countries = [];
     await axios.get('https://covid19.mathdro.id/api/countries')
       .then( res => {
-        res.data.countries.map(async (country) => {
-          await axios.get('https://covid19.mathdro.id/api/countries/' + country.iso3)
-            .then(details => {
-              let country_deets = {
-                name: country.name,
-                confirmed: details.data.confirmed,
-                recovered: details.data.recovered,
-                deaths: details.data.deaths,
-                lastUpdate: details.data.lastUpdate
-              }
-              this.setState({
-                countries: [...this.state.countries, country_deets]
-              })
-            })
-            .catch (error => {
-              console.log(error);
-            })
+        res.data.countries.map(country => {
+          countries.push(country);
         })
       });
+   
+    for (let i = 0; i < countries.length; i++) {
+      if (typeof countries[i].iso3 !== "undefined") {
+        const data = await getStatusInCountry(countries[i], i);
+
+        if (typeof data !== "undefined") {  
+          this.setState({
+            countries: [...this.state.countries, data]
+          })
+        }
+      } 
+    }
   }
   render() {
-    const countries = this.state.countries;
+    const {countries} = this.state;
     const countriesList = countries.length ? (
-      countries.map((country) => {
+      countries.map((countryCase) => {
         return (
           <tr>
-            <td>{country.name}</td>
-            <td className="center">{formatNumber(country.confirmed.value)}</td>
-            <td className="center">{formatNumber(country.recovered.value)}</td>
-            <td className="center">{formatNumber(country.deaths.value)}</td>
-            <td className="center">{formatNumber(country.confirmed.value - (country.recovered.value + country.deaths.value))}</td>
+            <td>{countryCase.name}</td>
+            <td className="center">{formatNumber(countryCase.confirmed)}</td>
+            <td className="center">{formatNumber(countryCase.recovered)}</td>
+            <td className="center">{formatNumber(countryCase.deaths)}</td>
+            <td className="center">{formatNumber(countryCase.confirmed - (countryCase.recovered + countryCase.deaths))}</td>
           </tr>
         )
       })
     ) : (
-      <td colspan="5">
-        <Preloader />
-      </td>
+      <Preloader />
     )
     
     return (
