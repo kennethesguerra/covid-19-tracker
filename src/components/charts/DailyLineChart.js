@@ -8,13 +8,17 @@ const DailyLineChart = ({dailyCases}) => {
   const confirmed = [];
   const deaths = [];
   const recovered = [];
+  const active = [];
 
   dailyCases.map((dailyCase) => {
     labels.push(dailyCase.txtDate);
     confirmed.push(dailyCase.totalConfirmed);
     deaths.push(dailyCase.totalDeaths);
     recovered.push(dailyCase.totalRecovered);
-  });
+
+    const newCases = parseInt(dailyCase.totalConfirmed) - (parseInt(dailyCase.totalRecovered) + parseInt(dailyCase.totalDeaths));
+    active.push(newCases);
+  }); 
 
   const data = {
     labels: labels,
@@ -24,6 +28,12 @@ const DailyLineChart = ({dailyCases}) => {
         borderColor: "yellow",
         backgroundColor: "rgba(0, 0, 0, 0.0)", 
         data: confirmed
+      },
+      {
+        label: 'Active', 
+        borderColor: "grey",
+        backgroundColor: "rgba(0, 0, 0, 0.0)", 
+        data: active  
       },
       {
         label: 'Recovered', 
@@ -45,8 +55,11 @@ const DailyLineChart = ({dailyCases}) => {
       <Line data={data} />
       <h6><b>Are we flattening the curve?</b></h6>
       <p>
-        Our guide to <i>"flatting the curve"</i> is to let <span className="green darken-3 white-text">green</span> or the <span className="red darken-3 white-text">red</span> (deeply wishing this stays in its current axis forever) 
-        going to the right would get closer and closer until it reaches the <span className="yellow darken-3 white-text">yellow</span> line.
+        For a pandemic like COVID-19, institutions have prioritized measures that will "flatten the curve". This means 
+        managing the daily number of cases to a level that can be accommodated by a country's health care system. In this 
+        graph, such scenario will have happened if the <span className="grey white-text">gray</span> line shows 
+        a flatter and more downward trend over time rather than a continuous upward slope. And we hope the green line would 
+        go up
       </p>
     </div>
   )

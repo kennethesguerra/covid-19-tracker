@@ -42,6 +42,9 @@ class CountryDailyStatus extends Component {
           })
           arrCases.push({id, txtDate, totalConfirmed, totalDeaths, totalRecovered});
         })
+        .catch(error => {
+          console.log(error.response)
+      });
     }
 
     this.setState({
