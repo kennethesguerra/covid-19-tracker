@@ -31,6 +31,9 @@ class GlobalDailyStatus extends Component {
           })
           arrCases.push({txtDate, totalConfirmed, totalRecovered, totalDeaths});
         })
+        .catch(error => {
+          console.log(error.response)
+        });
     }
 
     this.setState({
