@@ -44,7 +44,7 @@ class CountryDailyStatus extends Component {
         })
         .catch(error => {
           console.log(error.response)
-      });
+        });
     }
 
     this.setState({

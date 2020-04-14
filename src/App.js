@@ -11,11 +11,11 @@ class App extends Component {
       <HashRouter basename='/'>
         <div className="App">
           <div className="row blue darken-4 header">
-            <div className="col s12 m9">
+            <div className="col s9 m9">
             <Link to='/'><h5>COVID-19 Pandemic Status</h5></Link>
             </div>
-            <div className="col s12 m3">
-              <a href="https://github.com/kennethesguerra/covid-19-stat"><i className="fab fa-github fa-3x right"></i></a>
+            <div className="github col s3 m3">
+              <a href="https://github.com/kennethesguerra/covid-19-stat"><i className="github-icon-size fab fa-github fa-4x right"></i></a>
             </div>
           </div>
           <div className="home-page container">

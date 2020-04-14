@@ -32,3 +32,23 @@ code {
 .small-text {
   font-size: 10px;
 }
+
+@media only screen and (min-width: 400px) {
+  /* For tablets: */
+  .github {
+    display: hide;
+  }
+  
+}
+@media only screen and (min-width: 600px) {
+  /* For tablets: */
+  .github {
+    display: block;
+  }
+}
+@media only screen and (min-width: 768px) {
+  /* For desktop: */
+  .github {
+    display: block;
+  }
+}
