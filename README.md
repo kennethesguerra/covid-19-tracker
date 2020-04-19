@@ -6,10 +6,10 @@ Data Source from: https://covid19.mathdro.id
 
 ## Available Scripts
 
-Project setup
+```bash
+# project setup
+$ npm install
 
-### `npm install`
+# serve with hot reload at localhost:3000
+$ npm start
 
-In the project directory, you can run:
-
-### `npm start`
